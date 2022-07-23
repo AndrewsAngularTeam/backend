@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import { Shop } from '../models'
-import { objectIdToId } from '../utils/objectIdToId'
+import { updateShopArrayObject } from '../utils/objectIdToId'
 
 const router = express.Router()
 
@@ -57,7 +57,7 @@ const addDummy = async () => {
 
 router.get('', async (req: Request, res: Response) => {
   const shopItems = await Shop.find().lean().exec()
-  return res.status(200).send(objectIdToId(shopItems))
+  return res.status(200).send(updateShopArrayObject(shopItems))
 })
 
 router.get('/:itemType', async (req: Request, res: Response) => {
@@ -67,7 +67,7 @@ router.get('/:itemType', async (req: Request, res: Response) => {
   })
     .lean()
     .exec()
-  return res.status(200).send(shopItems)
+  return res.status(200).send(updateShopArrayObject(shopItems))
 })
 
 export { router }

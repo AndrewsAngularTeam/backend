@@ -9,6 +9,7 @@ interface Shop {
   cost: number
   itemType: string
   resource: string // The url to the resource
+  image: string
 }
 
 const ShopSchema = new mongoose.Schema<Shop>(
@@ -25,6 +26,9 @@ const ShopSchema = new mongoose.Schema<Shop>(
       index: true,
     },
     resource: {
+      type: String,
+    },
+    image: {
       type: String,
     },
   },
