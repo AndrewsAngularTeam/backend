@@ -1,0 +1,3 @@
+const MINUTE_TO_COIN_RATIO = 10
+
+export { MINUTE_TO_COIN_RATIO }

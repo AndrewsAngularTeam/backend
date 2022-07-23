@@ -8,6 +8,7 @@ interface IUser {
   selectedItemId: string | null
   id: string
   coins: number
+  privateMode: boolean
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -32,6 +33,9 @@ const UserSchema = new mongoose.Schema<IUser>(
     },
     coins: {
       type: Number,
+    },
+    privateMode: {
+      type: Boolean,
     },
   },
   {
