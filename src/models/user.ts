@@ -7,6 +7,7 @@ interface IUser {
   ownedItemIds: [string]
   selectedItemId: string | null
   id: string
+  coins: number
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -28,6 +29,9 @@ const UserSchema = new mongoose.Schema<IUser>(
     id: {
       type: String,
       index: true,
+    },
+    coins: {
+      type: Number,
     },
   },
   {
