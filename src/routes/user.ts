@@ -73,6 +73,7 @@ router.post('/:userId/addTime', async (req: Request, res: Response) => {
     {
       $inc: {
         coins: coinsToAdd,
+        totalWatchTimeMin: minutes,
       },
     },
     {
