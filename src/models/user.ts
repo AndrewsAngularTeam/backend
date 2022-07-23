@@ -4,6 +4,9 @@ import { aatMongoose } from '../utils/initialiseMongoose'
 interface IUser {
   name: string
   totalWatchTimeMin: number
+  ownedItemIds: [string]
+  selectedItemId: string | null
+  id: string
 }
 
 const UserSchema = new mongoose.Schema<IUser>(
@@ -14,6 +17,16 @@ const UserSchema = new mongoose.Schema<IUser>(
     },
     totalWatchTimeMin: {
       type: Number,
+      index: true,
+    },
+    ownedItemIds: {
+      type: [String],
+    },
+    selectedItemId: {
+      type: String,
+    },
+    id: {
+      type: String,
       index: true,
     },
   },

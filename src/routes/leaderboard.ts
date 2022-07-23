@@ -8,6 +8,7 @@ router.get('', async (req: Request, res: Response) => {
     .sort({ totalWatchTimeMin: -1 })
     .limit(10)
     .lean()
+    .exec()
   return res.status(200).send(topTen)
 })
 

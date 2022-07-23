@@ -1,0 +1,8 @@
+// A list of all shop items
+
+// A list of all shop items that the current user owns
+
+// An object that contains: {
+  itemId: "the item id",
+  itemFileUrl: "the url"
+}
