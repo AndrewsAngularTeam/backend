@@ -1,4 +1,4 @@
-import { checkUserExist } from '../utils/user'
+import { checkUserExist, createUser } from '../utils/user'
 import express, { NextFunction, Request, Response } from 'express'
 import { User } from '../models'
 import { MINUTE_TO_COIN_RATIO } from '../utils/constants'
@@ -107,6 +107,18 @@ router.post('/:userId/addTime', async (req: Request, res: Response) => {
     .exec()
 
   return res.status(200).json(result)
+})
+
+router.post('/create', async (req: Request, res: Response) => {
+  const { id, name } = req.body
+
+  if (id == null || name == null) {
+    return res
+      .status(400)
+      .send('Id or name does not exist in the request body.')
+  }
+  const user = await createUser(id, name)
+  return res.status(200).json(user)
 })
 
 export { router }

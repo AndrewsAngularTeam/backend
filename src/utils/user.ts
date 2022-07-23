@@ -1,5 +1,13 @@
 import { User } from '../models'
 
+const createUser = async (id: string, name: string) => {
+  const user = await User.create({
+    name: name,
+    id: id,
+  })
+  return user
+}
+
 const checkUserExist = async (userId: string | undefined) => {
   if (userId === undefined) {
     return null
@@ -14,4 +22,4 @@ const checkUserExist = async (userId: string | undefined) => {
   return check
 }
 
-export { checkUserExist }
+export { checkUserExist, createUser }

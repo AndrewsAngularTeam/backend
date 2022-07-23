@@ -20,12 +20,15 @@ const UserSchema = new mongoose.Schema<IUser>(
     totalWatchTimeMin: {
       type: Number,
       index: true,
+      default: 0,
     },
     ownedItemIds: {
       type: [String],
+      default: [],
     },
     selectedItemId: {
       type: String,
+      default: null,
     },
     id: {
       type: String,
@@ -33,9 +36,11 @@ const UserSchema = new mongoose.Schema<IUser>(
     },
     coins: {
       type: Number,
+      default: 0,
     },
     privateMode: {
       type: Boolean,
+      default: false,
     },
   },
   {
