@@ -10,6 +10,10 @@
     "formatCheck": "prettier --check .",
     "formatCode": "prettier --write ."
   },
+  "engines": {
+    "node": "16.13.0",
+    "npm": "8.1.0"
+  },
   "dependencies": {
     "bluebird": "3.7.2",
     "cookie-parser": "1.4.5",
