@@ -1,4 +1,5 @@
-import express, { Request, Response } from 'express'
+import { checkUserExist } from '../utils/user'
+import express, { NextFunction, Request, Response } from 'express'
 import { User } from '../models'
 import { MINUTE_TO_COIN_RATIO } from '../utils/constants'
 
@@ -7,6 +8,14 @@ const router = express.Router()
 router.get('/:userId', async (req: Request, res: Response) => {
   const { userId } = req.params
   console.log('UserId', userId)
+
+  const checkingResult = await checkUserExist(userId)
+  if (checkingResult === null) {
+    return res
+      .status(400)
+      .send('User ID does not exist. Please create the user first.')
+  }
+
   const userDetails = await User.findOne({
     id: userId,
   })
@@ -27,6 +36,13 @@ router.post(
   async (req: Request, res: Response) => {
     const { userId } = req.params
     const { privateMode } = req.body
+
+    const checkingResult = await checkUserExist(userId)
+    if (checkingResult === null) {
+      return res
+        .status(400)
+        .send('User ID does not exist. Please create the user first.')
+    }
 
     console.log('userId', userId)
     console.log('privateMode', privateMode)
@@ -56,6 +72,13 @@ router.post(
 router.post('/:userId/addTime', async (req: Request, res: Response) => {
   const { userId } = req.params
   const { minutes } = req.body
+
+  const checkingResult = await checkUserExist(userId)
+  if (checkingResult === null) {
+    return res
+      .status(400)
+      .send('User ID does not exist. Please create the user first.')
+  }
 
   console.log('userId', userId)
   console.log('minutes', minutes)
