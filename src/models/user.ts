@@ -3,6 +3,7 @@ import { aatMongoose } from '../utils/initialiseMongoose'
 
 interface IUser {
   name: string
+  profileImage: string
   totalWatchTimeMin: number
   ownedItemIds: [string]
   selectedItemId: string | null
@@ -16,6 +17,11 @@ const UserSchema = new mongoose.Schema<IUser>(
     name: {
       type: String,
       index: true,
+    },
+    profileImage: {
+      type: String,
+      default:
+        'https://aat-bucket-hackathon.s3.ap-southeast-2.amazonaws.com/Rectangle_48_1.png',
     },
     totalWatchTimeMin: {
       type: Number,

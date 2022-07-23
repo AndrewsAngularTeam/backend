@@ -11,6 +11,15 @@ router.get('', async (req: Request, res: Response) => {
     .limit(10)
     .lean()
     .exec()
+
+  // https://aat-bucket-hackathon.s3.ap-southeast-2.amazonaws.com/Rectangle_48_1.png
+
+  topTen.forEach((o) => {
+    if (o['profileImage'] === undefined) {
+      o['profileImage'] =
+        'https://aat-bucket-hackathon.s3.ap-southeast-2.amazonaws.com/Rectangle_48_1.png'
+    }
+  })
   return res.status(200).send(topTen)
 })
 
