@@ -30,6 +30,8 @@ const ShopSchema = new mongoose.Schema<Shop>(
     },
     image: {
       type: String,
+      default:
+        'https://aat-bucket-hackathon.s3.ap-southeast-2.amazonaws.com/Toujou.Nozomi.full.2855505.png',
     },
   },
   {
