@@ -80,4 +80,51 @@ router.post('/purchaseItem', async (req: Request, res: Response) => {
   return res.status(200).json(updatedUserObj)
 })
 
+router.post('/selectItem', async (req: Request, res: Response) => {
+  const { itemId, userId } = req.body
+
+  if (itemId == null || userId == null) {
+    return res
+      .status(400)
+      .send('itemId or userId does not exist in the request body.')
+  }
+
+  // Check if the item exist
+  const itemObj = await Shop.findOne({
+    _id: new ObjectId(itemId),
+  })
+    .lean()
+    .exec()
+  if (itemObj == null) {
+    return res.status(400).send('The item does not exist.')
+  }
+
+  const userObj = await User.findOne({ id: userId }).lean().exec()
+  if (userObj == null) {
+    return res.status(400).send('The user does not exist.')
+  }
+
+  if (!userObj.ownedItemIds.includes(itemId)) {
+    return res.status(400).send('The user does not own this item.')
+  }
+
+  const itemType = itemObj.itemType
+
+  const updatedUserObj = await User.findOneAndUpdate(
+    { id: userId },
+    {
+      $set: {
+        [`selectedItemIds.${itemType}`]: itemId,
+      },
+    },
+    {
+      new: true,
+    }
+  )
+    .lean()
+    .exec()
+
+  return res.status(200).json(updatedUserObj)
+})
+
 export { router }

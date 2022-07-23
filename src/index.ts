@@ -12,6 +12,10 @@ app.use(morgan('tiny'))
 app.use(cors())
 app.use(express.json())
 
+process.on('uncaughtException', (error) => {
+  console.log('an error caught', error)
+})
+
 app.get('/', async (req: Request, res: Response) => {
   return res.status(200).send('Hello :)')
 })
