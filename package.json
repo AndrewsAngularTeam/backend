@@ -1,7 +1,7 @@
 {
-  "name": "express-mongoose-template",
+  "name": "aat-backend",
   "version": "1.0.0",
-  "description": "express-mongoose-template",
+  "description": "aat-backend",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
@@ -50,15 +50,5 @@
     "supertest": "6.1.4",
     "ts-node": "9.1.1",
     "typescript": "4.3.5"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && yarn lint && yarn typecheck"
-    }
-  },
-  "lint-staged": {
-    "{{server/**/*,test/**/*}.{js,jsx,ts,tsx,json,css,scss,yml,yaml}}": [
-      "prettier --write"
-    ]
   }
 }
