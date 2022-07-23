@@ -6,7 +6,11 @@ interface IUser {
   profileImage: string
   totalWatchTimeMin: number
   ownedItemIds: [string]
-  selectedItemId: string | null
+  selectedItemIds: {
+    model: string | null
+    theme: string | null
+    voice: string | null
+  }
   id: string
   coins: number
   privateMode: boolean
@@ -32,9 +36,13 @@ const UserSchema = new mongoose.Schema<IUser>(
       type: [String],
       default: [],
     },
-    selectedItemId: {
-      type: String,
-      default: null,
+    selectedItemIds: {
+      type: Object,
+      default: {
+        model: null,
+        theme: null,
+        voice: null,
+      },
     },
     id: {
       type: String,
