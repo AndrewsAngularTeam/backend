@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express'
-import { leaderboardRouter, userRouter, shopRouter } from './routes'
+import { leaderboardRouter, userRouter, shopRouter, chatRouter } from './routes'
 import morgan from 'morgan'
 import cors from 'cors'
 
@@ -22,6 +22,7 @@ app.get('/', async (req: Request, res: Response) => {
 app.use('/leaderboard', leaderboardRouter)
 app.use('/user', userRouter)
 app.use('/shop', shopRouter)
+app.use('/chat', chatRouter)
 
 app.listen(port, () => {
   console.log(`Server started on port: ${port}`)
