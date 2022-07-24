@@ -114,6 +114,15 @@ router.post('/create', async (req: Request, res: Response) => {
       .status(400)
       .send('Id or name does not exist in the request body.')
   }
+
+  const checkUserExist = await User.findOne({
+    id: id,
+  })
+    .lean()
+    .exec()
+  if (checkUserExist !== null) {
+    return res.status(400).send('The user already exist.')
+  }
   const user = await createUser(id, name)
   return res.status(200).json(user)
 })
